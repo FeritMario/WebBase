@@ -1,29 +1,53 @@
-create table Restoran(
+create table Restaurant(
 id INT primary key,
-rate INT not NULL
+rate INT not null,
 name VARCHAR(255) not null,
 CONSTRAINT rate_check CHECK(rate > 0)
 );
 
-create table Employe(
+create table Employee(
 id INT primary key,
 salary INT,
-name VARCHAR(255) NOZ NULL,
+name VARCHAR(255) NOT NULL,
 RestaurantId INT,
 CONSTRAINT salary_check CHECK(salary > 0),
-constraint FK_RESTAURANT_ID foreign key(RestaurantId) references Restoran(id)
+constraint FK_RESTAURANT_ID foreign key(RestaurantId) references Restaurant(id)
 );
 
 create table Guest(
 id int primary key,
 Tip int not null,
 EmployeId INT,
-constraint FK_EMPLOYEE_ID foreign key(EmployeId) references Employe(id)
+constraint FK_EMPLOYEE_ID foreign key(EmployeId) references Employee(id)
 );
 
-INSERT INTO Restoran VALUES (1, 9, 'Slavonija');
-INSERT INTO Restoran VALUES (2, 10, 'Baranja');
-INSERT INTO Restoran VALUES (3, 8,'Pizza');
+create table Food(
+id int primary key,
+name VARCHAR(255),
+GuestId int,
+constraint FK_GUEST foreign key (GuestId) references Guest(id)
+);
+
+
+create table reservation(
+broj int primary key,
+people int not null,
+GuestId int,
+constraint FK_GUEST_reservation foreign key (GuestId) references Guest(id)
+);
+
+INSERT INTO restaurant  VALUES (1, 9, 'Slavonija');
+INSERT INTO restaurant  VALUES (2, 10, 'Baranja');
+INSERT INTO restaurant  VALUES (3, 8,'Pizza');
+
+INSERT INTO Employee  VALUES (1, 30000, 'Ivan');
+INSERT INTO Employee  VALUES (2, 20000, 'Marko');
+INSERT INTO Employee  VALUES (3, 15000, 'Mislav');
+
+INSERT INTO Guest  VALUES (1, 20);
+INSERT INTO Guest  VALUES (2, 10);
+INSERT INTO Guest  VALUES (3, 30);
+
 
 
 
