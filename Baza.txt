@@ -1,0 +1,31 @@
+create table Restoran(
+id INT primary key,
+rate INT not NULL
+name VARCHAR(255) not null,
+CONSTRAINT rate_check CHECK(rate > 0)
+);
+
+create table Employe(
+id INT primary key,
+salary INT,
+name VARCHAR(255) NOZ NULL,
+RestaurantId INT,
+CONSTRAINT salary_check CHECK(salary > 0),
+constraint FK_RESTAURANT_ID foreign key(RestaurantId) references Restoran(id)
+);
+
+create table Guest(
+id int primary key,
+Tip int not null,
+EmployeId INT,
+constraint FK_EMPLOYEE_ID foreign key(EmployeId) references Employe(id)
+);
+
+INSERT INTO Restoran VALUES (1, 9, 'Slavonija');
+INSERT INTO Restoran VALUES (2, 10, 'Baranja');
+INSERT INTO Restoran VALUES (3, 8,'Pizza');
+
+
+
+
+
